@@ -4,7 +4,7 @@ Installation:
 1. Install python2.7: `sudo apt install python2.7`
 1. Install virtualenv: `sudo apt install python-virtualenv`
 1. Create/go to virtual environment directory: `mkdir ~/virtualenvironment | cd ~/virtualenvironment`
-1. Clone repository: `git clone https://github.com/dziban303/dziwx.git`
+1. Clone repository: `git clone https://github.com/dziban303/dziwx.git ~/virtualenvironment/dziwx`
 1. Set up virtualenv: 
    * `virtualenv -p python2.7 ~/virtualenvironment/dziwx`
    * `cd ~/virtualenvironment/dziwx/bin`
