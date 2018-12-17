@@ -3,11 +3,31 @@ IRC weather bot for python2.7
 Installation:
 1. Install python2.7: `sudo apt install python2.7`
 2. Install virtualenv: `sudo apt install python-virtualenv`
-3. Set up virtualenv: 
-  - `mkdir ~/virtualenvironment`
-  - `virtualenv ~/virtualenvironment/dziwx`
-  - `ls ~/virtualenvironment/dziwx/bin`
+3. Create/go to virtual environment directory: `mkdir ~/virtualenvironment | cd ~/virtualenvironment`
+3. Clone repository: `git clone https://github.com/dziban303/dziwx.git`
+4. Set up virtualenv: 
+  - `virtualenv -p python2.7 ~/virtualenvironment/dziwx`
+  - `cd ~/virtualenvironment/dziwx/bin`
   - `source activate`
-4. Install requirements.txt: `pip install -r requirements.txt`
-5. Edit config files: 
-6. Run: `python pywx.py`
+  - `cd ~/virtualenvironment/dziwx/pywx`
+5. Install requirements.txt: `pip install -r requirements.txt`
+6. Edit config file `example_config.py`:
+  - forecast_io_secret = API key for forecast.io / darksky.com
+  - host, port = IRC server and port
+  - nick = bot's nickname
+  - pass = bot's IRC password
+  - chans = Channels to join. Must use preceeding #, e.g. `"chans": ["#weather,#dziwx"],`
+  - redlink, youtube, imgur fields = API keys for optional features
+  - leave other stuff alone
+  - save and rename to `local_config.py`
+7. Run: `python pywx.py`
+
+Notes: 
+- To add/edit acronyms for the `define` command, edit `acro.json`
+- To add/edit airports, edit `airports.dat`
+- To join password-protected channels, enter the password after the channel name in the `"chans"` field
+- To join multiple servers:
+  - Copy `local_config.py` to `new_config.py` or whatever you want to call it, and populate it with the new server info
+  - Copy `pywx.py`, name it `pywx2.py` or whatever you want to call it, and change the line therein from `from local_config import config` to `from new_config import config` replacing `new_config` with whatever your config file is named
+  - Run `python pywx2.py`
+  - Simultaneous use: `python pywx.py && python pywx2.py`
