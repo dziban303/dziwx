@@ -16,7 +16,6 @@ from jinja2 import contextfilter
 from registry import register
 
 
-
 epoch_tz_dt = lambda ts, tz='UTC': datetime.datetime.fromtimestamp(ts, tz=pytz.utc).astimezone(pytz.timezone(tz))
 first_greater_selector = lambda i, l: [r for c, r in l if c >= i][0]
 hms = lambda s: ''.join(['%s%s' % (n,l) for n,l in filter(lambda x: bool(x[0]), [(s/60/60, 'h'), (s/60%60, 'm'), (s%60%60, 's')])])
@@ -209,11 +208,31 @@ class BaseWeather(base.Command):
 class WeatherForecast(BaseWeather):
     template = u"""
         {{ name|nc }}:
-        {% for day in forecast.daily().data[:5] %}
+        {% for day in dailies %}
             {{ day.time.strftime('%a')|c('maroon') }}:
             {{ day.summary|ic(day.icon) }}
             (⇑ {{ day.temperatureMax|ctemp }}/⇓ {{ day.temperatureMin|ctemp }})
         {% endfor %}"""
+
+    def context(self, msg):
+        payload = super(WeatherForecast, self).context(msg)
+        forecast = payload['forecast']
+        units = payload['units']
+        timezone = pytz.timezone(forecast.json['timezone'])
+
+        daily = forecast.daily().data[:5]
+        dailies = []
+        for d in daily:
+            day = {
+               'time': pytz.utc.localize(d.time).astimezone(timezone),
+               'icon': d.icon,
+               'summary': d.summary,
+               'temperatureMin': d.temperatureMin,
+               'temperatureMax': d.temperatureMax,
+            }
+            dailies.append(day)
+        payload['dailies'] = dailies
+        return payload
 
 
 @register(commands=['hf',])
@@ -231,13 +250,12 @@ class HourlyForecast(BaseWeather):
         forecast = payload['forecast']
         units = payload['units']
         timezone = pytz.timezone(forecast.json['timezone'])
-        local_tz = pytz.timezone('US/Central')
 
         hourly = forecast.hourly().data[:12]
         hourlies = []
         for h in hourly:
             hour = {
-               'time': local_tz.localize(h.time).astimezone(timezone),
+               'time': pytz.utc.localize(h.time).astimezone(timezone),
                'icon': h.icon,
                'summary': h.summary,
                'temperature': h.temperature,
@@ -371,7 +389,7 @@ class Alert(BaseWeather):
         try:
             payload = super(Alert, self).context(msg)
         except base.ArgumentError:
-            return ['piss']
+            return ['Error']
         forecast = payload['forecast']
 
         alert_index = payload['args'].alert_index[0]
