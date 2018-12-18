@@ -21,6 +21,7 @@ Installation:
    - leave other stuff alone
    - save and rename to `local_config.py`
 1. Run: `python pywx.py`
+1. To quit: `Ctrl-C` terminates the bot and returns you to the shell.
 
 Notes: 
  - To add/edit acronyms for the `define` command, edit `acro.json`
