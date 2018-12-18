@@ -30,4 +30,4 @@ Notes:
    - Copy `local_config.py` to `new_config.py` or whatever you want to call it, and populate it with the new server info
    - Copy `pywx.py`, name it `pywx2.py` or whatever you want to call it, and change the line therein from `from local_config import config` to `from new_config import config` replacing `new_config` with whatever your config file is named
    - Run `python pywx2.py`
-   - Simultaneous use: `python pywx.py && python pywx2.py`
+   - Simultaneous use: `python pywx.py & python pywx2.py && fg`
