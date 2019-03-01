@@ -58,9 +58,11 @@ class Earthquake(base.Command):
         return payload
 
 
-@register_periodic(60)
+@register_periodic(150)
 class EarthquakeAlerter(Earthquake):
     usgs_api = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_hour.geojson'
+    ptwc_api = ''
+    ntwc_api = ''
 
     def context(self, msg):
         global eqdb
@@ -80,7 +82,7 @@ class EarthquakeAlerter(Earthquake):
         raise base.NoMessage
 
 
-@register(commands=['lastquake','quake'])
+@register(commands=['lastquake','quake','earthquake'])
 class LastQuake(Earthquake):
     usgs_api = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson'
 
@@ -88,6 +90,5 @@ class LastQuake(Earthquake):
         resp = requests.get(self.usgs_api)
         earthquakes = resp.json()['features']
         return self.quake_context(earthquakes[0])
-
 
 
