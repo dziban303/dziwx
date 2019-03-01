@@ -6,7 +6,6 @@ from .base import ParserCommand
 from registry import register_parser
 
 
-
 def pretty_iso_duration(iso_duration):
     dd = {}
     num = 0
