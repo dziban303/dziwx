@@ -113,8 +113,7 @@ class BaseWeather(base.Command):
 
     def load_airports(self):
         airport_lookup = {}
-        #adb = self.config.get('airportdb')
-        adb = self.config.get('pywx_path') + '/airports.dat'
+        adb = self.config.get('airportdb')
         if adb and os.path.exists(adb):
             for ap in csv.reader(open(adb)):
                 ap = map(lambda x: '' if x == '\\N' else x, ap)
@@ -491,7 +490,6 @@ class Eclipse(BaseWeather):
             return None
 
     def context(self, msg):
-        #payload = super(Locate, self).context(msg)
         payload = super(Eclipse, self).context(msg)
         eclipse = self.get_eclipse_data((payload['lat'], payload['lng']))
 
@@ -504,8 +502,8 @@ class Eclipse(BaseWeather):
         return payload
         
         
-@register(commands=['24eclipse','eclipse24'])
-class Eclipse(BaseWeather):
+@register(commands=['24eclipse','eclipse24','eclipse2024'])
+class Eclipse24(BaseWeather):
     eclipse_api = "https://www.timeanddate.com/scripts/astroserver.php"
     template = """{{ name|nc }}: {{ 'Apr 8, 2024 Eclipse'|c('maroon') }}:
         {{ 'Start'|tc }}: {{ start }} {{ 'Max'|tc }}: {{ max }} {{ 'End'|tc }}: {{ end }}
@@ -530,7 +528,7 @@ class Eclipse(BaseWeather):
             return None
 
     def context(self, msg):
-        payload = super(Locate, self).context(msg)
+        payload = super(Eclipse24, self).context(msg)
         eclipse = self.get_eclipse_data((payload['lat'], payload['lng']))
 
         payload['start'] = eclipse['events'][0]['txt'][15:]
