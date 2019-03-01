@@ -90,8 +90,8 @@ def color_temp(ctx, temp):
 class BaseWeather(base.Command):
     def __init__(self, config):
         super(BaseWeather, self).__init__(config)
-        self.airport_lookup = self.load_airports()
         db = dataset.connect(config['database'])
+        self.airport_lookup = self.load_airports()
         self.usertable = db['users']
         self.geoloc = GoogleV3(api_key=config['youtube_key'])
 
@@ -113,7 +113,8 @@ class BaseWeather(base.Command):
 
     def load_airports(self):
         airport_lookup = {}
-        adb = self.config.get('airportdb')
+        #adb = self.config.get('airportdb')
+        adb = self.config.get('pywx_path') + '/airports.dat'
         if adb and os.path.exists(adb):
             for ap in csv.reader(open(adb)):
                 ap = map(lambda x: '' if x == '\\N' else x, ap)
@@ -160,7 +161,7 @@ class BaseWeather(base.Command):
             name = loc.address
             match = True
 
-        airport = self.airport_lookup.get(location)
+        airport = self.airport_lookup.get(location.lower())
         if not match and airport:
             match = True
             code = "(%s)" % ('/'.join(filter(lambda x: bool(x), [airport.faa, airport.icao])))
@@ -273,6 +274,7 @@ class CurrentWeather(BaseWeather):
     {% if wind_chill %} {{ 'Wind Chill'|c('navy') }}: {{ wind_chill|ctemp }} {% endif %}
     {% if heat_index %} {{ 'Heat Index'|c('red') }}: {{ heat_index|ctemp }} {% endif %}
     {{ 'Winds'|tc }}: {{ windspeed }}
+    {% if windgust %} {{ 'Gusts'|c('red') }}: {{ windgust }} {% endif %}
     {{ 'Clouds'|tc }}: {{ clouds }}%
     {{ 'Dewpoint'|tc }}: {{ current.dewPoint|temp }}
     {{ 'Humidity'|tc }}: {{ humidity }}%
@@ -299,7 +301,19 @@ class CurrentWeather(BaseWeather):
             payload['heat_index'] = heat_index_si(current.temperature, current.humidity*100)
 
         windspeed = current.windSpeed if forecast.json['flags']['units'] != 'si' else current.windSpeed*3.6 #convert m/s to kph
-        payload['windspeed'] = '%s%s from %s' % (int(windspeed), units.wind, first_greater_selector(current.windBearing, wind_directions))
+        payload['windspeed'] = '%s%s %s' % (int(windspeed), units.wind, first_greater_selector(current.windBearing, wind_directions))
+        if current.windGust > 20 and units.wind == 'mph':
+            payload['windgust'] = int(round(current.windGust))
+        elif current.windGust > 32 and units.wind == 'kph':
+            payload['windgust'] = int(round(current.windGust))
+        elif current.windGust > 8 and units.wind == 'm/s':
+            payload['windgust'] = round(current.windGust, 1)
+        else:
+            payload['windgust'] = None
+
+        if payload['windgust']:
+            payload['windgust'] = "{}{}".format(payload['windgust'], units.wind)
+
         payload['humidity'] = int(current.humidity*100)
         payload['clouds'] = int(current.cloudCover*100)
 
@@ -426,10 +440,6 @@ class Radar(BaseWeather):
         return payload
 
 
-
-
-
-
 @register(commands=['locate', 'find', 'latlng', 'latlong'])
 class Locate(BaseWeather):
     elevation_api = "https://maps.googleapis.com/maps/api/elevation/json"
@@ -488,6 +498,44 @@ class Eclipse(BaseWeather):
         payload['start'] = eclipse['events'][0]['txt'][16:]
         payload['max'] = eclipse['events'][1]['txt'][16:]
         payload['end'] = eclipse['events'][2]['txt'][16:]
+        payload['duration'] = eclipse['duration']['fmt']
+        payload['mag'] = eclipse['mag']
+        payload['obs'] = eclipse['obs'] * 100
+        return payload
+        
+        
+@register(commands=['24eclipse','eclipse24'])
+class Eclipse(BaseWeather):
+    eclipse_api = "https://www.timeanddate.com/scripts/astroserver.php"
+    template = """{{ name|nc }}: {{ 'Apr 8, 2024 Eclipse'|c('maroon') }}:
+        {{ 'Start'|tc }}: {{ start }} {{ 'Max'|tc }}: {{ max }} {{ 'End'|tc }}: {{ end }}
+        {{ 'Duration'|tc }}: {{ duration }} {{ 'Magnitude'|tc }}: {{ mag }} {{ 'Obscuration'|tc }}: {{ obs }}%
+    """
+
+    def get_eclipse_data(self, latlng):
+        params = {
+            'mode': 'localeclipsejson',
+            'n': '@%s' % ','.join(map(str, latlng)),
+            'iso': '20240408',
+            'zoom': 5,
+            'mobile': 0
+        }
+        try:
+            req = requests.get(self.eclipse_api, params=params)
+            if req.status_code != 200:
+                return None
+            json = req.json()
+            return json
+        except:
+            return None
+
+    def context(self, msg):
+        payload = super(Locate, self).context(msg)
+        eclipse = self.get_eclipse_data((payload['lat'], payload['lng']))
+
+        payload['start'] = eclipse['events'][0]['txt'][15:]
+        payload['max'] = eclipse['events'][1]['txt'][15:]
+        payload['end'] = eclipse['events'][2]['txt'][15:]
         payload['duration'] = eclipse['duration']['fmt']
         payload['mag'] = eclipse['mag']
         payload['obs'] = eclipse['obs'] * 100
