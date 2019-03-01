@@ -18,6 +18,6 @@ config = {
     "youtube_key": "",
     "imgur_id": "",
     "imgur_secret": "",
-	"twitch_client": "",
-	"twitch_secret": "",
+    "twitch_client": "",
+    "twitch_secret": "",
 }
