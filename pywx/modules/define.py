@@ -3,7 +3,7 @@ from . import base
 from registry import register
 
 
-@register(commands=['define','what', "what's"])
+@register(commands=['define','what','what is','wtf is','what the fuck is','what the hell is','wth is','who is',"what's"])
 class Acronym(base.Command):
     template = u"""{{ acronym|nc }}: {{ definition }}"""
 
