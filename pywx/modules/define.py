@@ -13,7 +13,7 @@ class Acronym(base.Command):
         payload = {}
 #        acronym_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), '..', 'acro.json')
 #        acronyms = json.load(open(acronym_file))
-		acronyms = json.load(open('./acro.json'))
+        acronyms = json.load(open('./acro.json'))
         word = msg['args']
 
         if word[:3] == 'is ':
