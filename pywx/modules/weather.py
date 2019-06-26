@@ -439,28 +439,9 @@ class Alert(BaseWeather):
 
 @register(commands=['locate', 'find', 'latlng', 'latlong'])
 class Locate(BaseWeather):
-    # elevation_api = "https://maps.googleapis.com/maps/api/elevation/json"
-    # template = "{{ name|nc }}: {{ lat }}, {{ lng }} {{ 'Elevation'|tc }}: {{ elevation|int }}m ({{ elevation_ft|int }}ft)"
 	template = "{{ name|nc }}: {{ lat }}, {{ lng }}"
-
-    # def get_elevation(self, latlng):
-        # try:
-            # req = requests.get(self.elevation_api, params={'locations': ','.join(map(str, latlng))})
-            # if req.status_code != 200:
-                # return None
-            # json = req.json()
-            # if json['status'] != 'OK':
-                # return None
-            # return json['results'][0]['elevation']
-        # except:
-            # return None
-
     def context(self, msg):
         payload = super(Locate, self).context(msg)
-        # elevation = self.get_elevation((payload['lat'], payload['lng']))
-        # if elevation:
-            # payload['elevation'] = elevation
-            # payload['elevation_ft'] = meters_to_feet(elevation)
         return payload
 
 @register(commands=['eclipse','nexteclipse'])
