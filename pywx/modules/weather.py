@@ -439,7 +439,7 @@ class Alert(BaseWeather):
 
 @register(commands=['locate', 'find', 'latlng', 'latlong'])
 class Locate(BaseWeather):
-	template = "{{ name|nc }}: {{ lat }}, {{ lng }}"
+    template = "{{ name|nc }}: {{ lat }}, {{ lng }}"
     def context(self, msg):
         payload = super(Locate, self).context(msg)
         return payload
