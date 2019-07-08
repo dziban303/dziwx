@@ -67,6 +67,7 @@
 	"ECMWF": "European Centre for Medium-range Weather Forecasts (\"the European model\")",
 	"EDT": "Eastern Daylight Time. Depending on context, can either mean the time in the East Coast of the United States and much of Eastern Canada during summer (Toronto, New York, Miami; UTC-4) or the time in southeastern Australia during summer (Sydney, Melbourne, UTC+11)",
 	"EMC": "The Environmental Monitoring Center, the NWS organization responsible for maintaining and improving the American suite of weather models. (http://www.emc.ncep.noaa.gov/)",
+	"ENSO": "El Niño Southern Oscillation, a periodic variation in winds and sea surface temperatures over the tropical eastern Pacific Ocean, affecting the climate of much of the tropics and subtropics.",
 	"EOM": "End of Mission",
 	"EPAC": "East Pacific ocean",
 	"EPS": "Ensemble Prediction System. The ECMWF (Euro) ensemble model.",
