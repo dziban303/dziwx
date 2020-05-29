@@ -88,7 +88,7 @@
 	"FMS": "Fiji Meteorological Service (RSMC Nadi), the RSMC for the South Pacific from the equator to 40° South, and from 160° East to 120° West; forecasts for storms south of 25°S are issued by New Zealand's MetService (TCWC Wellington)",
 	"FOUS": "Forecast Output United States",
 	"FV3": "Finite-Volume Cubed-Sphere dynamical core model, the technology used in the new (2019) GFS model",
-	"FWCN": "Fleet Weather Center Norfolk. The US Navy organization which issues cyclone products for the Atlantic Ocean. JTWC is its Pacific counterpart."
+	"FWCN": "Fleet Weather Center Norfolk. The US Navy organization which issues cyclone products for the Atlantic Ocean. JTWC is its Pacific counterpart.",
 	"G-IV": "Gulfstream IV, medium-to-high altitude weather reconnaissance aircraft operated by NOAA, whose aircraft is known as Gonzo",
 	"GIV": "Gulfstream IV, medium-to-high altitude weather reconnaissance aircraft operated by NOAA, whose aircraft is known as Gonzo",
 	"GEFS": "Global Ensemble Forecast System model",
@@ -246,7 +246,7 @@
 	"TBSS": "Three-Body Scatter Spike, aka Hail Spike. An anomalous return on radar, in the form of a tail extending radially away from the radar site, when the beam encounters heavy hail in a thunderstorm.",
 	"TBW": "The Weather Forecast Office (WFO) in Ruskin, FL, whose County Warning Area (CWA) includes the Tampa Bay area and Sarasota, FL. The NEXRAD radar located at the Ruskin, FL WFO.",
 	"TCB": "Transverse Cirrus Banding (or Bands), bands of cirrus clouds extending radially around a tropical system, with an appearance somewhat like spikes or eyelashes. An indication of healthy outflow and, possibly, strengthening",
-	"TCFA": "Tropical Cyclone Formation Alert. A product from JTWC or FWCN warning of a probable impending cyclone formation."
+	"TCFA": "Tropical Cyclone Formation Alert. A product from JTWC or FWCN warning of a probable impending cyclone formation.",
 	"TCI": "Turks and Caicos Islands, southeast of the Bahamas",
 	"TCWC": "Tropical Cyclone Warning Center, essentially the same thing as an RSMC",
 	"TD": "Tropical Depression",
