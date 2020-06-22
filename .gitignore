@@ -8,4 +8,7 @@ share
 *.wpu
 *.db
 *~
+*.bak
 local_config.py
+pywx/acro.json.bak
+pywx/airports.dat.bak
