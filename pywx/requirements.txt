@@ -28,7 +28,7 @@ MarkupSafe==1.0
 mock==2.0.0
 ndg-httpsclient==0.4.3
 normality==0.5.2
-ntplib==0.3.3
+ntplib>=0.3.3
 oauth2client==4.1.2
 packaging==16.8
 pathlib2==2.3.0

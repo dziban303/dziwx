@@ -463,7 +463,7 @@ class Locate(BaseWeather):
             # payload['elevation_ft'] = meters_to_feet(elevation)
         return payload
 
-@register(commands=['eclipse','nexteclipse'])
+@register(commands=['eclipse','nexteclipse','eclipse23','eclipse2023'])
 class Eclipse(BaseWeather):
     eclipse_api = "https://www.timeanddate.com/scripts/astroserver.php"
     template = """{{ name|nc }}: {{ 'Oct 14 2023 Eclipse'|c('maroon') }}:
@@ -539,10 +539,10 @@ class Eclipse24(BaseWeather):
         return payload
 		
 		
-@register(commands=['oldeclipse','lasteclipse'])
+@register(commands=['oldeclipse','lasteclipse','eclipse17','eclipse2017'])
 class OldEclipse(BaseWeather):
     eclipse_api = "https://www.timeanddate.com/scripts/astroserver.php"
-    template = """{{ name|nc }}: {{ 'Aug 21 Eclipse'|c('maroon') }}:
+    template = """{{ name|nc }}: {{ 'Aug '17 Eclipse'|c('maroon') }}:
         {{ 'Start'|tc }}: {{ start }} {{ 'Max'|tc }}: {{ max }} {{ 'End'|tc }}: {{ end }}
         {{ 'Duration'|tc }}: {{ duration }} {{ 'Magnitude'|tc }}: {{ mag }} {{ 'Obscuration'|tc }}: {{ obs }}%
     """

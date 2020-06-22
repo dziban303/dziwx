@@ -12,3 +12,4 @@ share
 local_config.py
 pywx/acro.json.bak
 pywx/airports.dat.bak
+.vscode/settings.json
