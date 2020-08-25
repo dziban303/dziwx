@@ -251,7 +251,7 @@
 	"SS": "Storm Surge",
 	"SSHWS": "Saffir-Simpson Hurricane Wind Scale, the hurrican classification scheme used by the NHC for storms in the Atlantic, East Pacific, and Central Pacific basins",
 	"SST": "Sea Surface Temperature",
-	"ST": "St, stratus clouds. https://cloudatlas.wmo.int/en/stratus-st.html",
+	"ST": "St, stratus clouds, one of the primary cloud genera. https://cloudatlas.wmo.int/en/stratus-st.html",
 	"STS": "Severe Tropical Storm, a classification used by the JMA for storms in the northwest Pacific, as well as MF for southwestern Indian Ocean storms. Spanning from 48 to 63 kts, it is equivalent to a strong tropical storm to a low-end Category 1 hurricane on the SSHWS",
 	"SWPC": "Space Weather Prediction Center, the NWS organization responsible for monitoring Earth's space environment, forecasting space weather, and issuing space weather alerts. (https://www.swpc.noaa.gov)",
 	"T&C": "Turks and Caicos Islands, southeast of the Bahamas",
