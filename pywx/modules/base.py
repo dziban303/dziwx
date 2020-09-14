@@ -83,9 +83,9 @@ class Command(object):
         return msg
 
     def run(self, msg=''):
-        template = self.environment.from_string(self.template)
         try:
             context = self.context(msg)
+            template = self.environment.from_string(self.template)
             reply = template.render(context)
         except NoMessage, e:
             return []
@@ -116,4 +116,3 @@ class Command(object):
                 line = [word]
         lines.append(' '.join(line))
         return lines
-
