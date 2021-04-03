@@ -4,15 +4,16 @@
 
 1. Install python2.7: `sudo apt install python2.7`
 1. Install virtualenv: `sudo apt install python-virtualenv`
-1. Create/go to virtual environment directory: `mkdir ~/virtualenvironment | cd ~/virtualenvironment`
-1. Clone repository: `git clone https://github.com/dziban303/dziwx.git ~/virtualenvironment/dziwx`
-1. Set up virtualenv: 
+2. Ensure libffi is installed: `sudo apt install build-essential libssl-dev libffi-dev`
+3. Create/go to virtual environment directory: `mkdir ~/virtualenvironment | cd ~/virtualenvironment`
+4. Clone repository: `git clone https://github.com/dziban303/dziwx.git ~/virtualenvironment/dziwx`
+5. Set up virtualenv: 
    * `virtualenv -p python2.7 ~/virtualenvironment/dziwx`
    * `cd ~/virtualenvironment/dziwx/bin`
    * `source activate`
    * `cd ~/virtualenvironment/dziwx/pywx`
-1. Install requirements.txt: `pip install -r requirements.txt`
-1. Edit config file `example_config.py`:
+6. Install requirements.txt: `pip install -r requirements.txt`
+7. Edit config file `example_config.py`:
    - forecast_io_secret = API key for forecast.io / darksky.com
    - host, port = IRC server and port
    - nick = bot's nickname
@@ -21,8 +22,8 @@
    - redlink, youtube, imgur fields = API keys for optional features
    - leave other stuff alone
    - save and rename to `local_config.py`
-1. Run: `python pywx.py`
-1. To quit: `Ctrl-C` terminates the bot and returns you to the shell.
+8. Run: `python pywx.py`
+9. To quit: `Ctrl-C` terminates the bot and returns you to the shell.
 
 #### Notes: 
  - To add/edit acronyms for the `define` command, edit `acro.json`
