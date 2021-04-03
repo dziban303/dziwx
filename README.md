@@ -7,13 +7,15 @@
 2. Ensure libffi is installed: `sudo apt install build-essential libssl-dev libffi-dev`
 3. Create/go to virtual environment directory: `mkdir ~/virtualenvironment | cd ~/virtualenvironment`
 4. Clone repository: `git clone https://github.com/dziban303/dziwx.git ~/virtualenvironment/dziwx`
-5. Set up virtualenv: 
-   * `virtualenv -p python2.7 ~/virtualenvironment/dziwx`
-   * `cd ~/virtualenvironment/dziwx/bin`
-   * `source activate`
-   * `cd ~/virtualenvironment/dziwx/pywx`
+5. Set up and activate virtualenv: 
+   ```bash
+   virtualenv -p python2.7 ~/virtualenvironment/dziwx
+   cd ~/virtualenvironment/dziwx/bin
+   source activate
+   cd ~/virtualenvironment/dziwx/pywx
+   ```
 6. Install requirements.txt: `pip install -r requirements.txt`
-7. Edit config file `example_config.py`:
+7. Edit config file with nano `nano ~/virtualenvironment/dziwx/pywx/example_config.py`:
    - forecast_io_secret = API key for forecast.io / darksky.com
    - host, port = IRC server and port
    - nick = bot's nickname
@@ -21,12 +23,22 @@
    - chans = Channels to join. Must use preceeding #, e.g. `"chans": ["#weather,#dziwx"],`
    - redlink, youtube, imgur fields = API keys for optional features
    - leave other stuff alone
-   - save and rename to `local_config.py`
-8. Run: `python pywx.py`
+   - save and rename to `local_config.py`; in nano, save the file by typing `Ctrl+O` and then give it the new filename `local_config.py` when prompted.
+8. Test the bot: `python pywx.py`
 9. To quit: `Ctrl-C` terminates the bot and returns you to the shell.
+1. Create a shell script to run the bot: `nano ~/dziwx.sh`
+   ```bash
+   #!/bin/bash
+   cd ~/virtualenvironment/dziwx/bin
+   source activate
+   cd ~/virtualenvironment/dziwx/pywx
+   python2 pywx.py &
+   ```
+1. Make script executable: `sudo chmod 777 ~/dziwx.sh | sudo cp dziwx.sh /usr/local/bin/dziwx.sh`
+   - The bot can now be launched by typing `dziwx.sh`
 
 #### Notes: 
- - To add/edit acronyms for the `define` command, edit `acro.json`
+- To add/edit acronyms for the `define` command, edit `acro.json`
  - To add/edit airports, edit `airports.dat`
  - To join password-protected channels, enter the password after the channel name in the `"chans"` field
  - To join multiple servers:
