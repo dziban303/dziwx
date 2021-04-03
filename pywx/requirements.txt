@@ -51,7 +51,7 @@ pytz==2017.3
 pyyaml==5.1
 requests>=2.20.0
 responses==0.8.1
-rsa==3.4.2
+rsa==4.1
 scandir==1.6
 simplegeneric==0.8.1
 simplejson==3.11.1
