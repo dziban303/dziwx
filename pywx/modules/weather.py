@@ -500,7 +500,7 @@ class CurrentWeather(BaseWeather):
         return payload
 
 
-@register(commands=['wxtime', 'sun', 'moon'])
+@register(commands=['wxtime', 'when', 'time', 'sun', 'moon'])
 class LocalTime(BaseWeather):
     template = u"""
         {{ name|nc }}: {{ currtime }} ({{ utctime }})
