@@ -601,7 +601,7 @@ class Alert(BaseWeather):
         # }))
         # return payload
 
-@register(commands=['locate', 'find', 'latlng', 'latlong', 'latlon'])
+@register(commands=['locate', 'find', 'where', 'latlng', 'latlong', 'latlon'])
 class Locate(BaseWeather):
     # elevation_api = "https://maps.googleapis.com/maps/api/elevation/json"
     # template = "{{ name|nc }}: {{ lat }}, {{ lng }} {{ 'Elevation'|tc }}: {{ elevation|int }}m ({{ elevation_ft|int }}ft)"
