@@ -10,6 +10,10 @@ share
 *~
 *.bak
 local_config.py
+pywx/local_config.py
 pywx/acro.json.bak
 pywx/airports.dat.bak
 .vscode/settings.json
+*.dferrante
+six-1.15.0.tar.gz
+pyvenv.cfg
