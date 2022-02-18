@@ -500,7 +500,7 @@ class CurrentWeather(BaseWeather):
         return payload
 
 
-@register(commands=['wxtime', 'sun', 'moon'])
+@register(commands=['wxtime', 'when', 'time', 'sun', 'moon'])
 class LocalTime(BaseWeather):
     template = u"""
         {{ name|nc }}: {{ currtime }} ({{ utctime }})
@@ -601,11 +601,11 @@ class Alert(BaseWeather):
         # }))
         # return payload
 
-@register(commands=['locate', 'find', 'latlng', 'latlong'])
+@register(commands=['locate', 'find', 'where', 'latlng', 'latlong', 'latlon'])
 class Locate(BaseWeather):
     # elevation_api = "https://maps.googleapis.com/maps/api/elevation/json"
     # template = "{{ name|nc }}: {{ lat }}, {{ lng }} {{ 'Elevation'|tc }}: {{ elevation|int }}m ({{ elevation_ft|int }}ft)"
-    # template = "{{ name|nc }}: {{ lat }}, {{ lng }}"
+    template = "{{ name|nc }}: {{ lat }}, {{ lng }}"
 
     # def get_elevation(self, latlng):
         # try:

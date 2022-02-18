@@ -17,3 +17,5 @@ pywx/airports.dat.bak
 *.dferrante
 six-1.15.0.tar.gz
 pyvenv.cfg
+.vscode/settings.json
+pywx/pi_piplist_dziwx.txt
