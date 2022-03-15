@@ -14,7 +14,7 @@ The CSV is in the following format:
 * `icao` = Four-character ICAO code for the airport.
 * `lat` = Latitude.
 * `lon` = Longitude.
-* `alt` = Altitude above sea level of the airport.
+* `alt` = Altitude (in feet) above sea level of the airport.
 * `tz_offset` = Shows the difference from UTC in hours. -6 would be Central Standard Time (CST), +4 would be Moscow Standard Time (MSK), et cetera.
 * `dst_type` = Shows the *approximate* schedule for Daylight Saving Time at the airport's location. The codes are as follows:
   * E (Europe), 
