@@ -7745,3 +7745,5 @@ id,name,city,country,iata,icao,lat,lon,alt,tz_offset,dst_type
 9178,"Shreveport Downtown Airport","Shreveport","United States","DTN","KDTN",32.54019928,-93.74500275,179,-6,"A"
 9179,"Hammond Northshore Regional Airport","Hammond","United States","HDC","KHDC",30.52160072,-90.41840363,47,-6,"A"
 9180,"Jackson Barracks Heliport","New Orleans","United States","6LA0","6LA0",29.95350075,-90.0094986,5,-6,"A"
+9181,"Boothville Heliport","Bootheville","United States","LNQ","KLNQ",29.3541400,-89.4359100,1,-6,"A"
+9182,"South Lafourche Airport","Galliano","United States","GAO","KGAO",29.4411111,-90.2611111,0,-6,"A"
