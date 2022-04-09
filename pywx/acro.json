@@ -51,6 +51,7 @@
 	"CARCAH": "Chief, Aerial Reconnaissance Coordination, All Hurricanes",
 	"CB": "Convective burst. An eruption of thunderstorms. Also, when styled Cb, it means cumulonimbus clouds, i.e. a thunderhead. https://cloudatlas.wmo.int/en/cumulonimbus-cb.html",
 	"CBW": "The NEXRAD radar located at the Caribou, ME WFO.",
+	"CCC": "Central Cold Cover, signature of cold clouds spreading over the cyclone's core. It's a feature used in the Dvorak technique of cyclone strength estimation, and suggests a weakening of the storm",
 	"CCKW": "Convectively Coupled Kelvin Wave, a thousand mile-long, eastward-moving stratospheric impulse along the equator which can enhance convection and cyclogenesis", 
 	"CDO": "Central Dense Overcast, the main area of convection associated with a cyclone",
 	"CDT": "Central Daylight Time. Depending on context, can mean either the time in the central US and Canada during summer (Winnipeg, Chicago, Houston; UTC-5) or the time in south-central Australia during summer (Adelaide; UTC+10:30)",
