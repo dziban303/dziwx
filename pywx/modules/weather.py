@@ -601,30 +601,32 @@ class Alert(BaseWeather):
         # }))
         # return payload
 
-@register(commands=['locate', 'find', 'where', 'latlng', 'latlong', 'latlon'])
+@register(commands=['locate', 'find', 'latlng', 'latlong', 'elevation', 'elev', 'coords'])
 class Locate(BaseWeather):
-    # elevation_api = "https://maps.googleapis.com/maps/api/elevation/json"
-    # template = "{{ name|nc }}: {{ lat }}, {{ lng }} {{ 'Elevation'|tc }}: {{ elevation|int }}m ({{ elevation_ft|int }}ft)"
-    template = "{{ name|nc }}: {{ lat }}, {{ lng }}"
+    elevation_api = "https://maps.googleapis.com/maps/api/elevation/json"
+    template = "{{ name|nc }}: {{ lat }}, {{ lng }} {{ 'Elevation'|tc }}: {{ elevation|int }}m ({{ elevation_ft|int }}ft)"
 
-    # def get_elevation(self, latlng):
-        # try:
-            # req = requests.get(self.elevation_api, params={'locations': ','.join(map(str, latlng))})
-            # if req.status_code != 200:
-                # return None
-            # json = req.json()
-            # if json['status'] != 'OK':
-                # return None
-            # return json['results'][0]['elevation']
-        # except:
-            # return None
+    def get_elevation(self, latlng):
+        key = str(self.config['youtube_key'])        
+        try:
+            req = requests.get(self.elevation_api, params={'locations': ','.join(map(str, latlng,)), 'key': key})
+            if req.status_code != 200:
+                return None
+            json = req.json()
+            if json['status'] != 'OK':
+                return None
+            return json['results'][0]['elevation']
+        except Exception: # pylint: disable=broad-except
+            return None
 
     def context(self, msg):
         payload = super(Locate, self).context(msg)
-        # elevation = self.get_elevation((payload['lat'], payload['lng']))
-        # if elevation:
-            # payload['elevation'] = elevation
-            # payload['elevation_ft'] = meters_to_feet(elevation)
+        lat = payload['lat']
+        lng = payload['lng']
+        elevation = self.get_elevation((lat, lng))
+        if elevation:
+            payload['elevation'] = elevation
+            payload['elevation_ft'] = meters_to_feet(elevation)
         return payload
 
 @register(commands=['eclipse','nexteclipse','eclipse23','eclipse2023'])
