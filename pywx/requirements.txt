@@ -4,7 +4,7 @@ asn1crypto==0.23.0
 backports.shutil-get-terminal-size==1.0.0
 banal==0.2.1
 beautifulsoup4==4.6.3
-certifi==2017.7.27.1
+certifi==2022.12.7
 cffi==1.11.2
 chardet==3.0.4
 cookies==2.2.1
